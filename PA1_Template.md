@@ -1,11 +1,4 @@
----
-title: "RepData_PeerAssign1"
-author: "James Ottavi"
-date: "10/31/2016"
-output: 
-  html_document:
-    keep_md: TRUE
----
+# Reproducible Research: Peer Assessment 1
 
 
 
@@ -33,7 +26,7 @@ print(c(mean = mean(totalsteps, na.rm = TRUE), median = median(totalsteps, na.rm
 hist(totalsteps, main = "Histogram of Total Steps per Day", xlab = "Total Steps")
 ```
 
-![plot of chunk totalsteps](figure/totalsteps-1.png)
+![](PA1_Template_files/figure-html/totalsteps-1.png)<!-- -->
 
 ## Step 3: Average Daily Activity Pattern
 To look at how the the total steps changed across time intervals, a time series plot has been created below: on the x-axis, the specific interval being looked at; on the y-axis, the average number of total steps taken across all days for that interval.
@@ -43,7 +36,7 @@ intervalsteps <- with(activity, tapply(steps, interval, mean, na.rm = TRUE))
 plot(intervalsteps, type = "l", ylab = "Average Steps", xlab = "Interval", main = "Average Steps Across Intervals")
 ```
 
-![plot of chunk timeseries](figure/timeseries-1.png)
+![](PA1_Template_files/figure-html/timeseries-1.png)<!-- -->
 
 ## Steps 4: Dealing with Missing Values
 In this dataset, there happen to be a good deal of missing values. The below R code: counts the number of rows with missing values; fills in the respective missing values with the mean of that time interval; creates a new, non-NA dataset; and finally crafts a histogram of the new total number of steps taken per day.
@@ -76,7 +69,7 @@ print(c(NewMean = mean(sumnewsteps), NewMedian = median(sumnewsteps)))
 hist(sumnewsteps, main="Imputed Histogram Total Steps per Day", xlab= "Total Steps per Day")
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
+![](PA1_Template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
 ## Step Five: Patterns Between Weekdays and Weekends
 To see if there is a difference in step pattern between weekdays and weekends, a new factor variable will be created ("weekday", "weekend"). Afterwards, a panel plot will be created to visualize the potential differences.
@@ -89,4 +82,4 @@ daydata <- aggregate(steps~day+interval, data = newact, mean)
 xyplot(steps~interval | factor(day), data = daydata, type = "l", layout = c(1,2))
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
+![](PA1_Template_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
